@@ -8,7 +8,7 @@ using namespace std;
 // 2.2 Aufgabe
 Telefonbuch::Telefonbuch()
 {
-	anzahlEintraege = 3;
+	anzahlEintraege = 0;
 	maxAnzahlEintraege = 10;
 
 	// Standardeinträge
@@ -44,6 +44,14 @@ string Telefonbuch::nrSuche(string such)
 {
 	// ToDo
 
+	for (int i = 0; i < anzahlEintraege; i++)
+	{
+		if (telefonbuchEintraege.get(i)->getName() == such)
+		{
+			return telefonbuchEintraege.get(i)->getNr();
+		}
+	}
+
 	return "UNKNOWN";
 }
 
@@ -73,12 +81,15 @@ void Telefonbuch::toString()
 void Telefonbuch::eintragLoeschen(string loesch)
 {
 	// ToDo
+
 }
 
 
 void Telefonbuch::eintragEinfuegen(Eintrag* einf)
 {
 	// ToDo für Aufgabe 1 notwendig!
+	telefonbuchEintraege.add(einf);
+	anzahlEintraege++;
 }
 
 
