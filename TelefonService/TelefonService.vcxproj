@@ -143,6 +143,7 @@
     <ClInclude Include="Socket.hpp" />
     <ClInclude Include="Telefonbuch.h" />
     <ClInclude Include="TelefonbuchServer.h" />
+    <ClInclude Include="Thread.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

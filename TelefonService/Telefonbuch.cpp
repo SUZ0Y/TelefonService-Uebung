@@ -46,6 +46,7 @@ string Telefonbuch::nrSuche(string such)
 
 	for (int i = 0; i < anzahlEintraege; i++)
 	{
+		
 		if (telefonbuchEintraege.get(i)->getName() == such)
 		{
 			return telefonbuchEintraege.get(i)->getNr();
