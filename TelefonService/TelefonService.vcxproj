@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Eintrag.cpp" />
     <ClCompile Include="List.cpp" />
+    <ClCompile Include="MeinThread.cpp" />
     <ClCompile Include="ServerSocket.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="Telefonbuch.cpp" />
@@ -139,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="Eintrag.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="MeinThread.h" />
     <ClInclude Include="ServerSocket.hpp" />
     <ClInclude Include="Socket.hpp" />
     <ClInclude Include="Telefonbuch.h" />
