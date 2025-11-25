@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include "Thread.h"
 #include "TelefonbuchServer.h"
 using namespace std;
 
@@ -25,6 +25,8 @@ void TelefonbuchServer::start()
 {
 	string anfrageName = "";
 	string antwort;
+	int count = 0;
+
 	// ToDo
 
 
@@ -32,27 +34,35 @@ void TelefonbuchServer::start()
 		//    Der Aufruf von accept() blockiert solange, bis ein Client Verbindung aufnimmt
 
 		// ToDo
-	Socket* socket = server->accept();
-	cout << "Client verbunden!" << endl;
-
-
-	while(anfrageName != "EXIT")
+	while (true)
 	{
-		// 5b) Kommunikation mit read() write()
-		// To
-		anfrageName = socket->readLine();
-		if (anfrageName == "EXIT")
-		{
-			break;
-		}
-		cout << "Der ausgegebene Text: " << anfrageName << endl;
-		socket->write(daten->nrSuche(anfrageName));
-
+		cout << "Warte auf Client-Verbindung..." << endl;
+		Socket* socket = server->accept();
+		count++;
+		cout << "Client verbunden! [" << count << "]" << endl;
+		ServerThread* t = new ServerThread(workSocket, daten, count);
+		t->start();
 	}
+	
+
+
+	//while(anfrageName != "EXIT")
+	//{
+	//	// 5b) Kommunikation mit read() write()
+	//	// To
+	//	anfrageName = socket->readLine();
+	//	if (anfrageName == "EXIT")
+	//	{
+	//		break;
+	//	}
+	//	cout << "Der ausgegebene Text: " << anfrageName << endl;
+	//	socket->write(daten->nrSuche(anfrageName));
+
+	//}
 
 	// 7) ArbeitsSocket abmelden
 	// ToDo
-	socket->close();
+	/*socket->close();*/
 // 8) ServerSocket abmelden
 // ToDo
 	server->close();
