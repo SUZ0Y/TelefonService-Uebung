@@ -62,11 +62,5 @@
     <ClInclude Include="List.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="ServerThread.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Thread.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
