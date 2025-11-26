@@ -2,6 +2,7 @@
 #include <string>
 #include "Thread.h"
 #include "TelefonbuchServer.h"
+#include "ServerThread.h"
 using namespace std;
 
 TelefonbuchServer::TelefonbuchServer(int port)
@@ -32,18 +33,36 @@ void TelefonbuchServer::start()
 
 		// 3) accept() - erzeugt einen ArbeitsSocket (workSocket), wenn ein Client eine Verbindung anfragt
 		//    Der Aufruf von accept() blockiert solange, bis ein Client Verbindung aufnimmt
-
+	ServerThread* speicherST[3] = {};
 		// ToDo
 	while (true)
 	{
-		cout << "Warte auf Client-Verbindung..." << endl;
+		cout << "Warte auf Cient-Verbindung..." << endl;
 		Socket* socket = server->accept();
-		count++;
 		cout << "Client verbunden! [" << count << "]" << endl;
-		ServerThread* t = new ServerThread(workSocket, daten, count);
-		t->start();
+		bool foundfreethread = false;
+		while (count == 3 && !foundfreethread) 
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				if (!speicherST[i]->isRunning()) 
+				{
+					speicherST[i]->join();
+					speicherST[i]->setWorkSocket(socket);
+					speicherST[i]->start();
+					foundfreethread = true;
+					break;
+				}
+			}
+		}
+		if (count < 3) 
+		{
+			count++;
+			ServerThread* t = new ServerThread(socket, daten, count);
+			speicherST[count - 1] = t;
+			t->start();
+		}
 	}
-	
 
 
 	//while(anfrageName != "EXIT")
